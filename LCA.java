@@ -1,4 +1,4 @@
-// Websites visited in researching Lowest Common Ancestors: geeksforgooks.org
+import java.util.Scanner;
 
 class Node{
     int data;
@@ -59,6 +59,9 @@ public class LCA{
     }
 
     public static void main(String[] args){
+        Scanner scan = new Scanner(System.in);
+        int node1 = 0;
+        int node2 = 0;
         LCA tree = new LCA();
         tree.root = new Node(1);
         tree.root.left = new Node(2);
@@ -76,7 +79,25 @@ public class LCA{
         tree.root.right.right.left = new Node(11);
         tree.root.right.right.left = new Node(12);
 
-        Node lowest = tree.getLCA(8, 15);
+        System.out.print("Enter 1st node: ");
+        if (scan.hasNextInt()){
+            node1 = scan.nextInt();
+        }
+        else{
+            System.out.print("Invalid input.. Ending!");
+            System.exit(0);
+        }
+
+        System.out.print("Enter 2nd node: ");
+        if (scan.hasNextInt()){
+            node2 = scan.nextInt();
+        }
+        else{
+            System.out.print("Invalid input.. Ending!");
+            System.exit(0);
+        }
+
+        Node lowest = tree.getLCA(node1, node2);
         System.out.print("Lowest common ancestor is: " + lowest.data + ".");
     }
 }
