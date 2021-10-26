@@ -33,6 +33,21 @@ public class LCATest {
 	}
 	
 	@Test
+	public void testDAG() {
+		LCA tree = new LCA();
+		tree.root = new Node(1);
+		tree.root.left = new Node(2);
+		tree.root.right = new Node(3);
+		tree.root.left.right = new Node(4);
+		tree.root.left.left = new Node(5);
+		tree.root.right.left = tree.root.left.right;
+		tree.root.right.right = new Node(6);
+		final int expected = 1;
+		final int result = tree.getLCA(4, 6).data;
+		assertEquals("LCA of 4 and 6 in a DAG is 1", result, expected);
+	}
+	
+	@Test
 	public void testInvalid() {
         LCA tree = new LCA();
         tree.root = new Node(1);
@@ -50,7 +65,7 @@ public class LCATest {
         tree.root.right.left.right = new Node(10);
         tree.root.right.right.left = new Node(11);
         tree.root.right.right.left = new Node(12);
-        final int expected = (Integer) null;
+        final int expected = 999;
         final int result = tree.getLCA(6, 20).data;
         assertEquals("LCA of 6 and 20 is null", result, expected);
 	}
